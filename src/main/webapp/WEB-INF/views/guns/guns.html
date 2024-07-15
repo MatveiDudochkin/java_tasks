@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Guns</title>
+    <link rel="stylesheet" href="../../css/main.css">
+
+    <style>
+        input {
+            width: 100%;
+            margin-bottom: 10px;
+            padding: 10px;
+            border: 1px solid #555;
+            border-radius: 4px;
+            font-size: 16px;
+            background-color: #444;
+            color: #fff;
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Weapon list:</h2>
+    <div class="weapon_container">
+        <div th:each="gun : ${gunsList}">
+            <a class="nav_link" th:href="@{/guns/{name}(name =${gun.getId()})}" th:text="${gun.getName()}">gun</a>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <a href="/guns/new">Make new gun</a>
+</div>
+</body>
+</html>

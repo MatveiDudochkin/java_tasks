@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>New Gun</title>
+</head>
+<body>
+<div class="container">
+    <div class="form_container">
+        <form th:method="POST" th:action="@{/guns}" th:object="${addGun}">
+            <label for="name">Enter name gun:</label>
+            <input type="text" th:field="*{name}" id="name">
+            <br/>
+            <label for="type">Enter type gun:</label>
+            <input type="text" th:field="*{type}" id="type">
+            <br/>
+            <label for="bullets">Enter bullet in gun:</label>
+            <input type="number" th:field="*{bullets}" id="bullets">
+            <br/>
+            <input type="submit" value="Create!">
+        </form>
+    </div>
+</div>
+</body>
+</html>
