@@ -13,7 +13,7 @@ public class GunDAO {
 
     {
         guns = new ArrayList<>();
-        guns.add(new Gun(++GUNS_COUNT, "ak-47","automate", 30 ));
+        guns.add(new Gun(++GUNS_COUNT, "ak-47", "automate", 30));
         guns.add(new Gun(++GUNS_COUNT, "AWP", "Sniper Rifle", 10));
         guns.add(new Gun(++GUNS_COUNT, "UZI", "mini", 35));
     }
@@ -36,5 +36,9 @@ public class GunDAO {
         gunToBeChange.setName(gunChange.getName());
         gunToBeChange.setType(gunChange.getType());
         gunToBeChange.setBullets(gunChange.getBullets());
+    }
+
+    public void delete(int id) {
+        guns.remove(show(id));
     }
 }

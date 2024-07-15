@@ -5,66 +5,66 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calculator</title>
     <link rel="stylesheet" href="../../css/main.css">
-    <style>
-        .calculator {
-            width: 300px;
-            margin: 0 auto;
-            background: #333;
-            background: linear-gradient(to bottom right, #333, #222);
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-        }
+    <!--    <style>-->
+    <!--        .calculator {-->
+    <!--            width: 300px;-->
+    <!--            margin: 0 auto;-->
+    <!--            background: #333;-->
+    <!--            background: linear-gradient(to bottom right, #333, #222);-->
+    <!--            padding: 20px;-->
+    <!--            border-radius: 8px;-->
+    <!--            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);-->
+    <!--        }-->
 
-        .calculator input,
-        .calculator select,
-        .calculator button {
-            width: 100%;
-            margin-bottom: 10px;
-            padding: 10px;
-            border: 1px solid #555;
-            border-radius: 4px;
-            font-size: 16px;
-            background-color: #444;
-            color: #fff;
-            box-sizing: border-box;
-        }
+    <!--        .calculator input,-->
+    <!--        .calculator select,-->
+    <!--        .calculator button {-->
+    <!--            width: 100%;-->
+    <!--            margin-bottom: 10px;-->
+    <!--            padding: 10px;-->
+    <!--            border: 1px solid #555;-->
+    <!--            border-radius: 4px;-->
+    <!--            font-size: 16px;-->
+    <!--            background-color: #444;-->
+    <!--            color: #fff;-->
+    <!--            box-sizing: border-box;-->
+    <!--        }-->
 
-        .calculator input::placeholder,
-        .calculator select,
-        .calculator button {
-            color: #ecc8c8;
-        }
+    <!--        .calculator input::placeholder,-->
+    <!--        .calculator select,-->
+    <!--        .calculator button {-->
+    <!--            color: #ecc8c8;-->
+    <!--        }-->
 
-        .calculator button {
-            background-color: #4CAF50;
-            border: none;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
+    <!--        .calculator button {-->
+    <!--            background-color: #4CAF50;-->
+    <!--            border: none;-->
+    <!--            cursor: pointer;-->
+    <!--            transition: background-color 0.3s ease;-->
+    <!--        }-->
 
-        .calculator button:hover {
-            background-color: #45a049;
-        }
+    <!--        .calculator button:hover {-->
+    <!--            background-color: #45a049;-->
+    <!--        }-->
 
-        .calculator #result {
-            color: #fff;
-            margin-top: 10px;
-        }
+    <!--        .calculator #result {-->
+    <!--            color: #fff;-->
+    <!--            margin-top: 10px;-->
+    <!--        }-->
 
-        .calculator_form_container {
-            display: flex;
-            justify-content: center;
-            flex-direction: column;
-        }
+    <!--        .calculator_form_container {-->
+    <!--            display: flex;-->
+    <!--            justify-content: center;-->
+    <!--            flex-direction: column;-->
+    <!--        }-->
 
-        .result_calculate {
-            align-self: center;
-            width: 100px;
-            display: flex;
-            justify-content: space-between;
-        }
-    </style>
+    <!--        .result_calculate {-->
+    <!--            align-self: center;-->
+    <!--            width: 100px;-->
+    <!--            display: flex;-->
+    <!--            justify-content: space-between;-->
+    <!--        }-->
+    <!--    </style>-->
 </head>
 <body>
 <div class="container">
@@ -72,18 +72,33 @@
         <h1 class="home_title">Calculator</h1>
     </div>
     <div class="calculator_form_container">
-        <form th:method="POST" th:action="@{/calculator}">
-            <input type="number" id="arg1" >
-            <input type="number" id="arg2" >
-            <select id="option">
-                    <option value="-">Subtraction</option>
-                    <option value="+">Addition</option>
-                    <option value="*">Multiplication</option>
-                    <option value="/">Division</option>
-                </select>
-            <button type="submit">Count</button>
+        <form th:method="POST" th:action="@{calculator}" th:object="${calculation}">
+            <label for="firstArg">Enter the first arg:</label>
+            <input type="number" th:field="*{firstArg}" id="firstArg">
+            <label for="secondArg">Enter the second arg:</label>
+            <input type="number" th:field="*{secondArg}" id="secondArg">
+            <label for="operation">Take value:</label>
+            <select id="operation" th:field="*{operation}">
+                <option value="-">Subtraction</option>
+                <option value="+">Addition</option>
+                <option value="*">Multiplication</option>
+                <option value="/">Division</option>
+            </select>
+            <input type="submit" value="Count">
         </form>
+        <div th:if="${error}" class="error" th:text="${error}"></div>
+        <div th:text="${result}"></div>
+        <h2>Calculation History</h2>
+        <ul>
+            <li th:each="op : ${operations_list}">
+                <span th:text="${op.getSecondArg()}">First Argument</span>
+                <span th:text="${op.getOperation()}">Operation</span>
+                <span th:text="${op.getSecondArg()}">Second Argument</span>
+                = <span th:text="${op.getResult()}">Result</span>
+            </li>
+        </ul>
     </div>
+
 </div>
 </body>
 </html>

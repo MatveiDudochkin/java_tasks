@@ -8,5 +8,9 @@
 <body>
 <p th:text="${nameGun.getName()}">Value</p>
 <p th:text="${nameGun.getType()}">Value</p>
+<a th:href="@{/guns/{id}/edit(id=${nameGun.getId()})}">Edit</a>
+<form th:method="DELETE" th:action="@{/guns/{id}(id=${nameGun.getId()})}">
+    <input type="submit" value="Delete">
+</form>
 </body>
 </html>

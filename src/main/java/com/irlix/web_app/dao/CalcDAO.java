@@ -1,7 +1,6 @@
 package com.irlix.web_app.dao;
 
 import com.irlix.web_app.models.Calculate;
-//import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
@@ -14,13 +13,14 @@ public class CalcDAO {
 
     {
         operations = new ArrayList<>();
-        operations.add(new Calculate(++OPERATION_COUNT, 1.1, 2.2, "+", 3.3 ));
+        operations.add(new Calculate(++OPERATION_COUNT, 5.2, 5.2, "+", 10.4));
     }
 
     public void save(Calculate calculate) {
         calculate.setId(++OPERATION_COUNT);
         operations.add(calculate);
     }
+
     public List<Calculate> getAllOperations() {
         return operations;
     }

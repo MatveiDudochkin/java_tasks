@@ -26,9 +26,10 @@ public class CalculatorController {
         model.addAttribute("calculation", new Calculate());
         return "calc/calculator";
     }
+
     @PostMapping("/calculator")
     public String processCalc(@ModelAttribute("calculation") Calculate calculation, Model model) {
-        double result;
+        double result = 0;
         switch (calculation.getOperation()) {
             case "+":
                 result = calculation.getFirstArg() + calculation.getSecondArg();
@@ -40,22 +41,30 @@ public class CalculatorController {
                 result = calculation.getFirstArg() * calculation.getSecondArg();
                 break;
             case "/":
-                result = calculation.getFirstArg() / calculation.getSecondArg();
+                if (calculation.getSecondArg() != 0) {
+                    result = calculation.getFirstArg() / calculation.getSecondArg();
+                } else {
+                    model.addAttribute("error", "Division by zero is not allowed.");
+                    return "calc/calculator";
+                }
                 break;
-            default: result = 0;
+            default:
+                model.addAttribute("error", "Invalid operation.");
+                return "calc/calculator";
         }
         model.addAttribute("result", result);
+        calculation.setResult(result);
+        calcDAO.save(calculation);
         return "calc/calculator";
     }
 
+    /*
+    TODO*
+    разобраться почему не отображается история
+     */
     @GetMapping
-    public String calculator(Model model) {
-        model.addAttribute("list_operations", calcDAO.getAllOperations());
+    public String showHistory(Model model) {
+        model.addAttribute("operations_list", calcDAO.getAllOperations());
         return "calc/calculator";
-    }
-    @PostMapping("/calculator")
-    public String createNewOperation(@ModelAttribute("save") Calculate calc) {
-        CalcDAO.save(calc);
-        return "/calc/calculator";
     }
 }

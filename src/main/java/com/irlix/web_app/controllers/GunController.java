@@ -46,7 +46,7 @@ public class GunController {
     }
 
     @GetMapping("/{id}/edit")
-    public String getByType( @PathVariable("id") int id, Model model) {
+    public String getByType(@PathVariable("id") int id, Model model) {
         model.addAttribute("gun", gunDAO.show(id));
         return "guns/edit";
     }
@@ -54,6 +54,16 @@ public class GunController {
     @PatchMapping("/{id}")
     public String change(@ModelAttribute("gun") Gun gun, @PathVariable("id") int id) {
         gunDAO.change(id, gun);
+        return "redirect:/guns";
+    }
+
+    /*
+    TODO*
+    разобраться почему не работает Delete
+     */
+    @DeleteMapping("/{id}")
+    public String delete(@PathVariable("id") int id) {
+        new GunDAO().delete(id);
         return "redirect:/guns";
     }
 }

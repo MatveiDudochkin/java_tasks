@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebContextManager">
+    <option name="state">
+      <map>
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/calc/calculator.html" value="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/calc" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/guns/show.html" value="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/views/guns" />
+      </map>
+    </option>
+  </component>
+</project>
