@@ -39,6 +39,6 @@ public class GunDAO {
     }
 
     public void delete(int id) {
-        guns.remove(show(id));
+        guns.removeIf(w -> w.getId() == id);
     }
 }

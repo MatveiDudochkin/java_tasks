@@ -4,34 +4,52 @@
     <meta charset="UTF-8">
     <title>Guns</title>
     <link rel="stylesheet" href="../../css/main.css">
-
     <style>
-        input {
-            width: 100%;
-            margin-bottom: 10px;
-            padding: 10px;
-            border: 1px solid #555;
-            border-radius: 4px;
-            font-size: 16px;
-            background-color: #444;
-            color: #fff;
-            box-sizing: border-box;
+        .weapon_container {
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .nav_link {
+            margin-top: 10px;
+        }
+
+        .custom-link {
+            display: inline-block;
+            padding: 10px 20px;
+            border: 2px solid #4CAF50;
+            border-radius: 5px;
+            color: #4CAF50;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .custom-link:hover {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        .link_container {
+            display: flex;
+            justify-content: center;
         }
     </style>
 </head>
 <body>
-
-
 <div class="container">
-    <h2>Weapon list:</h2>
     <div class="weapon_container">
-        <div th:each="gun : ${gunsList}">
+        <h2>Weapon list:</h2>
+        <div class="weapon_list" th:each="gun : ${gunsList}">
             <a class="nav_link" th:href="@{/guns/{name}(name =${gun.getId()})}" th:text="${gun.getName()}">gun</a>
         </div>
     </div>
 </div>
 <div class="container">
-    <a href="/guns/new">Make new gun</a>
+    <div class="link_container">
+        <a class="custom-link" href="/guns/new">Make new gun</a>
+    </div>
 </div>
 </body>
 </html>

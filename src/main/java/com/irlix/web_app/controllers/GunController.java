@@ -57,13 +57,9 @@ public class GunController {
         return "redirect:/guns";
     }
 
-    /*
-    TODO*
-    разобраться почему не работает Delete
-     */
     @DeleteMapping("/{id}")
     public String delete(@PathVariable("id") int id) {
-        new GunDAO().delete(id);
+        gunDAO.delete(id);
         return "redirect:/guns";
     }
 }

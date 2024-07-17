@@ -28,6 +28,7 @@ body {
     transition: color 0.3s, border-bottom 0.3s;
     border-bottom: 2px solid transparent;
     font-size: 24px;
+    margin-top: 10px;
 }
 
 .nav_link:hover {

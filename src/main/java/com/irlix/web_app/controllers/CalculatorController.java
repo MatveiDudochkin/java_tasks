@@ -1,8 +1,6 @@
 package com.irlix.web_app.controllers;
 
-import com.irlix.web_app.dao.CalcDAO;
 import com.irlix.web_app.models.Calculate;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -10,26 +8,25 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.ui.Model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 
 @Controller
 @RequestMapping("/calc")
 public class CalculatorController {
-    private final CalcDAO calcDAO;
-
-    public CalculatorController(CalcDAO calcDAO) {
-        this.calcDAO = calcDAO;
-    }
-
+    List<Calculate> calcList = new ArrayList<>();
 
     @GetMapping("/calculator")
     public String showCalc(Model model) {
         model.addAttribute("calculation", new Calculate());
+        model.addAttribute("calcList", calcList);
         return "calc/calculator";
     }
 
     @PostMapping("/calculator")
     public String processCalc(@ModelAttribute("calculation") Calculate calculation, Model model) {
-        double result = 0;
+        double result;
         switch (calculation.getOperation()) {
             case "+":
                 result = calculation.getFirstArg() + calculation.getSecondArg();
@@ -52,19 +49,9 @@ public class CalculatorController {
                 model.addAttribute("error", "Invalid operation.");
                 return "calc/calculator";
         }
+        calcList.add(calculation);
         model.addAttribute("result", result);
-        calculation.setResult(result);
-        calcDAO.save(calculation);
-        return "calc/calculator";
-    }
-
-    /*
-    TODO*
-    разобраться почему не отображается история
-     */
-    @GetMapping
-    public String showHistory(Model model) {
-        model.addAttribute("operations_list", calcDAO.getAllOperations());
+        model.addAttribute("calcList", calcList);
         return "calc/calculator";
     }
 }

@@ -8,20 +8,25 @@ import java.util.List;
 
 @Repository
 public class CalcDAO {
-    private static int OPERATION_COUNT;
-    private final List<Calculate> operations;
+    private List<String> operations = new ArrayList<>();
 
-    {
-        operations = new ArrayList<>();
-        operations.add(new Calculate(++OPERATION_COUNT, 5.2, 5.2, "+", 10.4));
-    }
-
-    public void save(Calculate calculate) {
-        calculate.setId(++OPERATION_COUNT);
-        operations.add(calculate);
-    }
-
-    public List<Calculate> getAllOperations() {
-        return operations;
+    public void addOperation(Calculate calc) {
+        switch (calc.getOperation()) {
+            case "+":
+                calc.setResult(calc.getResult() + calc.getResult());
+                break;
+            case "-":
+                calc.setResult(calc.getResult() - calc.getResult());
+                break;
+            case "*":
+                calc.setResult(calc.getResult() * calc.getResult());
+                break;
+            case "/":
+                calc.setResult(calc.getResult() / calc.getResult());
+                break;
+            default:
+                calc.setResult(0);
+        }
+        operations.add(calc.toString());
     }
 }

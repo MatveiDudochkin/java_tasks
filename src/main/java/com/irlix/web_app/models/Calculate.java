@@ -1,11 +1,10 @@
 package com.irlix.web_app.models;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
-
-@Setter
-@Getter
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class Calculate {
     private int id;
     private double firstArg;
@@ -13,14 +12,8 @@ public class Calculate {
     private String operation;
     private double result;
 
-    public Calculate() {
-    }
-
-    public Calculate(int id, double firstArg, double secondArg, String operation, double result) {
-        this.id = id;
-        this.firstArg = firstArg;
-        this.secondArg = secondArg;
-        this.operation = operation;
-        this.result = result;
+    @Override
+    public String toString() {
+        return firstArg + " " + operation + " " + secondArg + " = " + result;
     }
 }

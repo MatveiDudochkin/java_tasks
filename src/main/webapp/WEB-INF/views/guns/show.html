@@ -5,12 +5,69 @@
     <title>Gun</title>
     <link rel="stylesheet" href="../../css/main.css">
 </head>
+<style>
+    .param_container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .param_text {
+        font-family: 'Arial', sans-serif;
+        font-size: 24px;
+        color: #e5d7d7;
+        line-height: 1.5;
+        margin: 0;
+        padding-bottom: 10px;
+        text-align: justify;
+    }
+
+    .button-delete {
+        display: inline-block;
+        padding: 10px 20px;
+        border: 2px solid #d9534f;
+        border-radius: 5px;
+        background-color: #d9534f;
+        color: white;
+        text-decoration: none;
+        font-weight: bold;
+        cursor: pointer;
+        transition: background-color 0.3s ease, border-color 0.3s ease;
+    }
+
+    .button-delete:hover {
+        background-color: #c9302c;
+        border-color: #ac2925;
+    }
+
+    .custom-link {
+        display: inline-block;
+        padding: 10px;
+        border: 2px solid #4CAF50;
+        border-radius: 5px;
+        color: #4CAF50;
+        text-decoration: none;
+        font-weight: bold;
+        transition: background-color 0.3s ease, color 0.3s ease;
+        margin-bottom: 10px;
+    }
+
+    .custom-link:hover {
+        background-color: #4CAF50;
+        color: white;
+    }
+</style>
 <body>
-<p th:text="${nameGun.getName()}">Value</p>
-<p th:text="${nameGun.getType()}">Value</p>
-<a th:href="@{/guns/{id}/edit(id=${nameGun.getId()})}">Edit</a>
-<form th:method="DELETE" th:action="@{/guns/{id}(id=${nameGun.getId()})}">
-    <input type="submit" value="Delete">
-</form>
+<div class="container">
+    <div class="param_container">
+        <p class="param_text" th:text="${nameGun.getName()}">Value</p>
+        <p class="param_text" th:text="${nameGun.getType()}">Value</p>
+        <p class="param_text" th:text="${nameGun.getBullets()}">Value</p>
+        <a class="custom-link" th:href="@{/guns/{id}/edit(id=${nameGun.getId()})}">Edit</a>
+        <form th:method="DELETE" th:action="@{/guns/{id}(id=${nameGun.getId()})}">
+            <input class="button-delete" type="submit" value="Delete">
+        </form>
+    </div>
+</div>
 </body>
 </html>

@@ -34,7 +34,7 @@
                 </a>
             </li>
             <li>
-                <a class="nav_link">
+                <a class="nav_link" href="office">
                     Office
                 </a>
             </li>

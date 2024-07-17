@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Office</title>
+</head>
+<body>
+<div class="container">
+    <h2>Manager List</h2>
+    <div class="managers_list" th:each="man : ${managerList}">
+        <a th:href="@{/office/{name}(name = ${man.getId()})}"
+           th:text="${man.getName()} + ' ' + ${man.getSurname()}"></a>
+    </div>
+    <h2>Workers List</h2>
+    <div class="workers_list" th:each="wor : ${workerList}">
+        <a th:text="${wor.getName()} + ' ' + ${wor.getSurname()}"></a>
+    </div>
+    <a href="office/newManager"> Create New Manager</a>
+</div>
+</body>
+</html>
