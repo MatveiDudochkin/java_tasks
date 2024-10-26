@@ -21,4 +21,6 @@
   <img src="https://github.com/devicons/devicon/blob/master/icons/tomcat/tomcat-original-wordmark.svg" width="40" height="40"/>
   <img src="https://github.com/devicons/devicon/blob/master/icons/java/java-original.svg" width="40" height="40"/>
   <img src="https://github.com/devicons/devicon/blob/master/icons/maven/maven-original.svg" width="40" height="40"/>
+  <img src="loombok.jpeg" width="60" height="40"/>
+   <img src="thymeleaf.png" width="40" height="40"/>
 </div>
